@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="" />
+    <meta name="robots" content="" />
 
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -24,135 +24,118 @@
           href="https://fyvo.github.io/theme/pygments/default.min.css">
 
 
-
   <link rel="stylesheet" type="text/css" href="https://fyvo.github.io/theme/font-awesome/css/fontawesome.css">
   <link rel="stylesheet" type="text/css" href="https://fyvo.github.io/theme/font-awesome/css/brands.css">
   <link rel="stylesheet" type="text/css" href="https://fyvo.github.io/theme/font-awesome/css/solid.css">
 
 
-  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#222222">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#222222">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#222222">
-
-  <link href="https://fyvo.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Multilingual NLP / Multilinguisme en Traitement des langues Atom">
+    <link href="https://fyvo.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Multilingual NLP / Multilinguisme en Traitement des langues Atom">
 
 
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
 
-
-
-
-
- 
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#222222">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#222222">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#222222">
 
 <meta name="author" content="François Yvon" />
 <meta name="description" content="This post is a short summary of what needs to be known, and slightly more, to fully get the grasp of a series of not so recent papers (2017-2018) which have tried to exploit the mathematical theory of Optimal Transport to compute multilingual word embeddings." />
 <meta name="keywords" content="">
 
 
-  <meta property="og:site_name" content="Multilingual NLP / Multilinguisme en Traitement des langues"/>
-  <meta property="og:title" content="Notes on Optimal Transport for Multilingual Embeddings"/>
-  <meta property="og:description" content="This post is a short summary of what needs to be known, and slightly more, to fully get the grasp of a series of not so recent papers (2017-2018) which have tried to exploit the mathematical theory of Optimal Transport to compute multilingual word embeddings."/>
-  <meta property="og:locale" content="fr_FR"/>
-  <meta property="og:url" content="https://fyvo.github.io/posts/2020/oct/01/notes-on-optimal-transport-for-multilingual-embeddings.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2020-10-01 00:00:00+02:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://fyvo.github.io/">
-  <meta property="article:section" content="Multilinguality, Embeddings"/>
-  <meta property="og:image" content="/images/profile.png">
+<meta property="og:site_name" content="Multilingual NLP / Multilinguisme en Traitement des langues"/>
+<meta property="og:title" content="Notes on Optimal Transport for Multilingual Embeddings"/>
+<meta property="og:description" content="This post is a short summary of what needs to be known, and slightly more, to fully get the grasp of a series of not so recent papers (2017-2018) which have tried to exploit the mathematical theory of Optimal Transport to compute multilingual word embeddings."/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:url" content="https://fyvo.github.io/posts/2020/oct/01/notes-on-optimal-transport-for-multilingual-embeddings.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-10-01 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://fyvo.github.io/">
+<meta property="article:section" content="Multilinguality, Embeddings"/>
+<meta property="og:image" content="/images/profile.png">
 
   <title>Multilingual NLP / Multilinguisme en Traitement des langues &ndash; Notes on Optimal Transport for Multilingual Embeddings</title>
 
-
 </head>
 <body >
+  <aside>
+    <div>
+      <a href="https://fyvo.github.io">
+        <img src="/images/profile.png" alt="" title="">
+      </a>
 
-<aside>
-  <div>
-    <a href="https://fyvo.github.io/">
-      <img src="/images/profile.png" alt="" title="">
-    </a>
+      <h1>
+        <a href="https://fyvo.github.io"></a>
+      </h1>
 
-    <h1>
-      <a href="https://fyvo.github.io/"></a>
-    </h1>
+<p>Un site académique / An academic site</p>
 
-    <p>Un site académique / An academic site</p>
-
-
-    <nav>
-      <ul class="list">
+      <nav>
+        <ul class="list">
 
 
 
+            <li>
+              <a target="_self" href="/pages/curriculum" >About me</a>
+            </li>
+            <li>
+              <a target="_self" href="https://cv.archives-ouvertes.fr/francois-yvon" >Publications</a>
+            </li>
+            <li>
+              <a target="_self" href="/pages/reviewing-en" >Reviewing</a>
+            </li>
+            <li>
+              <a target="_self" href="/pages/blog_index.html" >Posts</a>
+            </li>
+            <li>
+              <a target="_self" href="/pages/access" >Contact</a>
+            </li>
+        </ul>
+      </nav>
+
+      <ul class="social">
           <li>
-            <a target="_self" href="/pages/curriculum" >About me</a>
+            <a  class="sc-linkedin" href="https://www.linkedin.com/in/françois-yvon-b5b64a" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
           </li>
           <li>
-            <a target="_self" href="https://cv.archives-ouvertes.fr/francois-yvon" >Publications</a>
+            <a  class="sc-github" href="https://github.com/fyvo" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
           </li>
           <li>
-            <a target="_self" href="/pages/reviewing-en" >Reviewing</a>
-          </li>
-          <li>
-            <a target="_self" href="/pages/blog_index.html" >Posts</a>
-          </li>
-          <li>
-            <a target="_self" href="/pages/access" >Contact</a>
+            <a  class="sc-bluesky" href="https://bsky.app/profile/yvofr.bsky.social" target="_blank">
+              <i class="fab fa-bluesky"></i>
+            </a>
           </li>
       </ul>
-    </nav>
+    </div>
 
-    <ul class="social">
-      <li>
-        <a class="sc-linkedin"
-           href="https://www.linkedin.com/in/françois-yvon-b5b64a"
-           target="_blank">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="sc-github"
-           href="https://github.com/fyvo"
-           target="_blank">
-          <i class="fa-brands fa-github"></i>
-        </a>
-      </li>
-      <li>
-        <a class="sc-bluesky"
-           href="https://bsky.app/profile/yvofr.bsky.social"
-           target="_blank">
-          <i class="fa-brands fa-bluesky"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-</aside>
+  </aside>
   <main>
 
-<nav>
-  <a href="https://fyvo.github.io/">Home</a>
+    <nav>
+      <a href="https://fyvo.github.io">Home</a>
 
-  <a href="/pages/resources-en">Resources [en]</a>
-  <a href="/pages/teaching">Enseignements [fr]</a>
-  <a href="/pages/talks">Exposés [fr]</a>
-  <a href="/pages/phd-students">Doctorants [fr]</a>
-  <a href="/pages/media">Médiation [fr]</a>
+      <a href="/pages/resources-en">Resources [en]</a>
+      <a href="/pages/teaching">Enseignements [fr]</a>
+      <a href="/pages/talks">Exposés [fr]</a>
+      <a href="/pages/phd-students">Doctorants [fr]</a>
+      <a href="/pages/media">Médiation [fr]</a>
 
-  <a href="https://fyvo.github.io/feeds/all.atom.xml">Atom</a>
+      <a href="https://fyvo.github.io/feeds/all.atom.xml">Atom</a>
 
-</nav>
+    </nav>
 
 <article class="single">
   <header>
@@ -237,29 +220,30 @@ with <span class="math">\(K = exp(-\lambda M)\)</span>.</p>
     """
     Computes the optimal transport matrix and Slinkhorn distance using the
     Sinkhorn-Knopp algorithm</p>
-<div class="highlight"><pre><span></span><code><span class="nl">Inputs:</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">cost</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">marginals</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="p">)</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">marginals</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="p">)</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">lam</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">strength</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entropic</span><span class="w"> </span><span class="n">regularization</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">epsilon</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">convergence</span><span class="w"> </span><span class="k">parameter</span>
+<div class="highlight"><pre><span></span><span class="n">Inputs</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">M</span> <span class="p">:</span> <span class="n">cost</span> <span class="n">matrix</span> <span class="p">(</span><span class="n">n</span> <span class="n">x</span> <span class="n">m</span><span class="p">)</span>
+    <span class="o">-</span> <span class="n">r</span> <span class="p">:</span> <span class="n">vector</span> <span class="k">of</span> <span class="n">marginals</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">)</span>
+    <span class="o">-</span> <span class="k">c</span> <span class="p">:</span> <span class="n">vector</span> <span class="k">of</span> <span class="n">marginals</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">)</span>
+    <span class="o">-</span> <span class="n">lam</span> <span class="p">:</span> <span class="n">strength</span> <span class="k">of</span> <span class="n">the</span> <span class="n">entropic</span> <span class="n">regularization</span>
+    <span class="o">-</span> <span class="n">epsilon</span> <span class="p">:</span> <span class="n">convergence</span> <span class="k">parameter</span>
 
-<span class="nl">Outputs:</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">optimal</span><span class="w"> </span><span class="n">transport</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">dist</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Sinkhorn</span><span class="w"> </span><span class="n">distance</span>
-<span class="s">&quot;&quot;&quot;</span>
-<span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">shape</span>
-<span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="w"> </span><span class="n">lam</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M</span><span class="p">)</span>
-<span class="n">P</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="p">#</span><span class="w"> </span><span class="n">normalize</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">matrix</span>
-<span class="k">while</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="mh">1</span><span class="p">)))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nl">epsilon:</span>
-<span class="w">    </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="mh">1</span><span class="p">)</span>
-<span class="w">    </span><span class="p">#</span><span class="w"> </span><span class="n">reshape</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">transposition</span><span class="w"> </span><span class="n">operations</span>
-<span class="w">    </span><span class="n">P</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">u</span><span class="p">).</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mh">1</span><span class="p">,</span><span class="w"> </span><span class="mh">1</span><span class="p">))</span>
-<span class="w">    </span><span class="n">P</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="mh">0</span><span class="p">)).</span><span class="n">reshape</span><span class="p">((</span><span class="mh">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="p">))</span>
-<span class="k">return</span><span class="w"> </span><span class="n">P</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M</span><span class="p">)</span>
-</code></pre></div>
+<span class="n">Outputs</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">P</span> <span class="p">:</span> <span class="n">optimal</span> <span class="n">transport</span> <span class="n">matrix</span> <span class="p">(</span><span class="n">n</span> <span class="n">x</span> <span class="n">m</span><span class="p">)</span>
+    <span class="o">-</span> <span class="n">dist</span> <span class="p">:</span> <span class="n">Sinkhorn</span> <span class="n">distance</span>
+<span class="ss">&quot;&quot;</span><span class="err">&quot;</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">M</span><span class="p">.</span><span class="n">shape</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">M</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">/=</span> <span class="n">P</span><span class="p">.</span><span class="k">sum</span><span class="p">()</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="o">#</span> <span class="n">normalize</span> <span class="n">this</span> <span class="n">matrix</span>
+<span class="n">while</span> <span class="n">np</span><span class="p">.</span><span class="k">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="k">abs</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">P</span><span class="p">.</span><span class="k">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">:</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">P</span><span class="p">.</span><span class="k">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">#</span> <span class="n">reshape</span> <span class="n">will</span> <span class="n">handle</span> <span class="n">the</span> <span class="n">transposition</span> <span class="n">operations</span>
+    <span class="n">P</span> <span class="o">*=</span> <span class="p">(</span><span class="n">r</span> <span class="o">/</span> <span class="n">u</span><span class="p">).</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">P</span> <span class="o">*=</span> <span class="p">(</span><span class="k">c</span> <span class="o">/</span> <span class="n">P</span><span class="p">.</span><span class="k">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)).</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="k">sum</span><span class="p">(</span><span class="n">P</span> <span class="o">*</span> <span class="n">M</span><span class="p">)</span>
+</pre></div>
+
 
 <p>A computational analysis is in http://papers.nips.cc/paper/6792-near-linear-time-approximation-algorithms-for-optimal-transport-via-sinkhorn-iteration</p>
 <h2>Wasserstein distance as a cost function - Wasserstein GANs</h2>
@@ -428,12 +412,11 @@ then I can try to do the same. This has less impact</p>
 
 
 
-
 </article>
 
-<footer>
+    <footer>
 <p>
-  &copy; 2020-2024 FY - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US" target="_blank">Creative Commons Attribution-ShareAlike</a>
+  &copy; 2020-2024 FY - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
 </p>
 <p>
 Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
@@ -456,7 +439,11 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
          width="80"
          height="15"/>
   </a>
-</p></footer>  </main>
+</p>    </footer>
+  </main>
+
+
+
 
 <script type="application/ld+json">
 {
@@ -468,5 +455,7 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   "description": ""
 }
 </script>
+
+
 </body>
 </html>
