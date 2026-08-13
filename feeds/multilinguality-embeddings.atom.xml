@@ -1,69 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Multilingual NLP / Multilinguisme en Traitement des langues - Multilinguality, Embeddings</title><link href="https://fyvo.github.io/" rel="alternate"></link><link href="https://fyvo.github.io/feeds/multilinguality-embeddings.atom.xml" rel="self"></link><id>https://fyvo.github.io/</id><updated>2020-10-01T00:00:00+02:00</updated><subtitle>Un site académique / An academic site</subtitle><entry><title>Notes on Optimal Transport for Multilingual Embeddings</title><link href="https://fyvo.github.io/posts/2020/oct./01/notes-on-optimal-transport-for-multilingual-embeddings.html" rel="alternate"></link><published>2020-10-01T00:00:00+02:00</published><updated>2020-10-01T00:00:00+02:00</updated><author><name>François Yvon</name></author><id>tag:fyvo.github.io,2020-10-01:/posts/2020/oct./01/notes-on-optimal-transport-for-multilingual-embeddings.html</id><summary type="html">&lt;p&gt;This post is a short summary of what needs to be known, and slightly more, to fully get the grasp of a series of not so recent papers (2017-2018) which have tried to exploit the mathematical theory of Optimal Transport to compute multilingual word embeddings.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Monge's Problem&lt;/h2&gt;
-&lt;p&gt;Monge's problem is a mapping problem: given two sets of points with a mass &lt;span class="math"&gt;\(X= \{x_i, i=1 \dots n\}\)&lt;/span&gt; with respective mass &lt;span class="math"&gt;\(a_i\)&lt;/span&gt; and &lt;span class="math"&gt;\(Y=\{y_j, j=1 \dots m\}\)&lt;/span&gt; with respective mass &lt;span class="math"&gt;\(b_j\)&lt;/span&gt; the &lt;em&gt;Monge assignment problem&lt;/em&gt; seeks a map &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; between &lt;span class="math"&gt;\(X\)&lt;/span&gt; and &lt;span class="math"&gt;\(Y\)&lt;/span&gt; such that (a) &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; minimizes some mapping cost (in Monge's initial problem a distance between points), and (b) &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; satisfies &lt;strong&gt;mass conservation properties&lt;/strong&gt;: all the mass in &lt;span class="math"&gt;\(x_i\)&lt;/span&gt; should be in the set &lt;span class="math"&gt;\(\Gamma[x_i]\)&lt;/span&gt;: &lt;span class="math"&gt;\(\forall j, \sum_{i  | \Gamma[x_i] = y_j} a_i = b_j\)&lt;/span&gt;. &lt;/p&gt;
-&lt;p&gt;This problem can also be formulated in continuous spaces, with punctual masses &lt;span class="math"&gt;\(a\)&lt;/span&gt; and &lt;span class="math"&gt;\(b\)&lt;/span&gt; changed into measures &lt;span class="math"&gt;\(\mu_X\)&lt;/span&gt; and &lt;span class="math"&gt;\(\mu_Y\)&lt;/span&gt;. &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; is then constrained to minimize the total transportation cost  &lt;span class="math"&gt;\(\int_X \mu_X(x) c(x, \Gamma(x)) dx\)&lt;/span&gt; under the constraint that for all measurable sets &lt;span class="math"&gt;\(B\)&lt;/span&gt; &lt;span class="math"&gt;\(\int_B \mu_Y(y)dy = \int_{\Gamma^{-1}(B)} \mu_X(x) dx\)&lt;/span&gt;. [Any &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; realizing this is a &lt;em&gt;push forward&lt;/em&gt; mapping, denoted &lt;span class="math"&gt;\(\Gamma_{\#} \mu_X = \mu_Y\)&lt;/span&gt;.]&lt;/p&gt;
-&lt;p&gt;In discrete spaces a related problem is the classical combinatorial assignment problem, which corresponds to &lt;span class="math"&gt;\(m=n\)&lt;/span&gt; and all masses equal to one. In this case, the optimal mapping is solved with the &lt;a href=""&gt;Hungarian wedding algorithm&lt;/a&gt; in &lt;span class="math"&gt;\(O(n^3)\)&lt;/span&gt;. Such methods have been used to perform heuristic word alignments in parallel sentences, assuming some matching cost (eg.\ pointwise mutual information or any reasonnable cooccurrence measure) between points. For multilingual embeddings, we will have &lt;span class="math"&gt;\(X\)&lt;/span&gt; as the set of embeddings in one language, and &lt;span class="math"&gt;\(Y\)&lt;/span&gt; the sets of embeddings in another language, and we will need to map one to the other. A nice property is they no longer will need to have the same size.&lt;/p&gt;
-&lt;p&gt;The relaxation by Kantorovitch relaxes the assumption that &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; is a mapping and consider probabilistic couplings instead - which means that the masses in each &lt;span class="math"&gt;\(x\)&lt;/span&gt; can be split to be distributed to some &lt;span class="math"&gt;\(y\)&lt;/span&gt;. This yields a probabilistic assignment problem, again subject to marginal constraints.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Multilingual NLP / Multilinguisme en Traitement des langues - Multilinguality, Embeddings</title><link href="https://fyvo.github.io/" rel="alternate"/><link href="https://fyvo.github.io/feeds/multilinguality-embeddings.atom.xml" rel="self"/><id>https://fyvo.github.io/</id><updated>2020-10-01T00:00:00+02:00</updated><subtitle>Un site académique / An academic site</subtitle><entry><title>Notes on Optimal Transport for Multilingual Embeddings</title><link href="https://fyvo.github.io/posts/2020/oct./01/notes-on-optimal-transport-for-multilingual-embeddings.html" rel="alternate"/><published>2020-10-01T00:00:00+02:00</published><updated>2020-10-01T00:00:00+02:00</updated><author><name>François Yvon</name></author><id>tag:fyvo.github.io,2020-10-01:/posts/2020/oct./01/notes-on-optimal-transport-for-multilingual-embeddings.html</id><summary type="html">&lt;p&gt;This post is a short summary of what needs to be known, and slightly more, to fully get the grasp of a series of not so recent papers (2017-2018) which have tried to exploit the mathematical theory of Optimal Transport to compute multilingual word embeddings.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Monge's Problem&lt;/h2&gt;
+&lt;p&gt;Monge's problem is a mapping problem: given two sets of points with a mass $X= {x_i, i=1 \dots n}$ with respective mass $a_i$ and $Y={y_j, j=1 \dots m}$ with respective mass $b_j$ the &lt;em&gt;Monge assignment problem&lt;/em&gt; seeks a map $\Gamma$ between $X$ and $Y$ such that (a) $\Gamma$ minimizes some mapping cost (in Monge's initial problem a distance between points), and (b) $\Gamma$ satisfies &lt;strong&gt;mass conservation properties&lt;/strong&gt;: all the mass in $x_i$ should be in the set $\Gamma[x_i]$: $\forall j, \sum_{i  | \Gamma[x_i] = y_j} a_i = b_j$. &lt;/p&gt;
+&lt;p&gt;This problem can also be formulated in continuous spaces, with punctual masses $a$ and $b$ changed into measures $\mu_X$ and $\mu_Y$. $\Gamma$ is then constrained to minimize the total transportation cost  $\int_X \mu_X(x) c(x, \Gamma(x)) dx$ under the constraint that for all measurable sets $B$ $\int_B \mu_Y(y)dy = \int_{\Gamma^{-1}(B)} \mu_X(x) dx$. [Any $\Gamma$ realizing this is a &lt;em&gt;push forward&lt;/em&gt; mapping, denoted $\Gamma_{#} \mu_X = \mu_Y$.]&lt;/p&gt;
+&lt;p&gt;In discrete spaces a related problem is the classical combinatorial assignment problem, which corresponds to $m=n$ and all masses equal to one. In this case, the optimal mapping is solved with the &lt;a href=""&gt;Hungarian wedding algorithm&lt;/a&gt; in $O(n^3)$. Such methods have been used to perform heuristic word alignments in parallel sentences, assuming some matching cost (eg.\ pointwise mutual information or any reasonnable cooccurrence measure) between points. For multilingual embeddings, we will have $X$ as the set of embeddings in one language, and $Y$ the sets of embeddings in another language, and we will need to map one to the other. A nice property is they no longer will need to have the same size.&lt;/p&gt;
+&lt;p&gt;The relaxation by Kantorovitch relaxes the assumption that $\Gamma$ is a mapping and consider probabilistic couplings instead - which means that the masses in each $x$ can be split to be distributed to some $y$. This yields a probabilistic assignment problem, again subject to marginal constraints.&lt;/p&gt;
 &lt;h2&gt;The transport problem&lt;/h2&gt;
 &lt;h3&gt;Basics&lt;/h3&gt;
-&lt;p&gt;In discrete spaces, we define &lt;em&gt;transportation plans&lt;/em&gt; &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; as follows:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;In discrete spaces, we define &lt;em&gt;transportation plans&lt;/em&gt; $\Gamma$ as follows:
+$$
 \Gamma: (d \times d) \text{ matrix with coefficients in } \R_+
-U(p,q) = \{\Gamma \in \R_+^{d\times{}d}, \Gamma I_d = p, \Gamma^T I_d=q \}
-$$&lt;/div&gt;
-&lt;p&gt;
-&lt;span class="math"&gt;\(U(p,q)\)&lt;/span&gt;, the set of matrices satisfying the constraints, is a bounded set with &lt;span class="math"&gt;\(m+n\)&lt;/span&gt; linear equality constraints. This defines a convex polytope. Another way to look at &lt;span class="math"&gt;\(U(p,q)\)&lt;/span&gt; is that they contain probability distributions with fixed marginals.&lt;/p&gt;
-&lt;p&gt;Recall that the Frobenius norm between matrices between matrices &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; and &lt;span class="math"&gt;\(M\)&lt;/span&gt; is defined as: &lt;span class="math"&gt;\(&amp;lt;\Gamma,M&amp;gt; = \operatorname{Tr}(\Gamma^T M) = \sum_{i,j} \Gamma_{ij} M_{ij}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Let &lt;span class="math"&gt;\(M\)&lt;/span&gt; be a cost matrix satisfying the following properties &lt;span class="math"&gt;\(M_{ij} = 0\)&lt;/span&gt; iff &lt;span class="math"&gt;\(i=j\)&lt;/span&gt;, &lt;span class="math"&gt;\(M_{ij} =M_{ji}\)&lt;/span&gt; (symmetry), and triangular inequality &lt;span class="math"&gt;\(\forall i,j,k M_{i,k} \lt M_{i,j} + M_{j,k}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;When &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; is in &lt;span class="math"&gt;\(U(p,q)\)&lt;/span&gt;, &lt;span class="math"&gt;\(&amp;lt;\Gamma,M&amp;gt;\)&lt;/span&gt; can read as an expectation over &lt;span class="math"&gt;\(\Gamma()\)&lt;/span&gt; of the transportation cost:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$&amp;lt;\Gamma,M&amp;gt; = \sum_{i,j} \Gamma_{ij} M_{ij} = E_{X,Y \sim P(X,Y)} [M(X,Y)]$$&lt;/div&gt;
-&lt;p&gt;
+U(p,q) = {\Gamma \in \R_+^{d\times{}d}, \Gamma I_d = p, \Gamma^T I_d=q }
+$$
+$U(p,q)$, the set of matrices satisfying the constraints, is a bounded set with $m+n$ linear equality constraints. This defines a convex polytope. Another way to look at $U(p,q)$ is that they contain probability distributions with fixed marginals.&lt;/p&gt;
+&lt;p&gt;Recall that the Frobenius norm between matrices between matrices $\Gamma$ and $M$ is defined as: $&amp;lt;\Gamma,M&amp;gt; = \operatorname{Tr}(\Gamma^T M) = \sum_{i,j} \Gamma_{ij} M_{ij}$.&lt;/p&gt;
+&lt;p&gt;Let $M$ be a cost matrix satisfying the following properties $M_{ij} = 0$ iff $i=j$, $M_{ij} =M_{ji}$ (symmetry), and triangular inequality $\forall i,j,k M_{i,k} \lt M_{i,j} + M_{j,k}$&lt;/p&gt;
+&lt;p&gt;When $\Gamma$ is in $U(p,q)$, $&amp;lt;\Gamma,M&amp;gt;$ can read as an expectation over $\Gamma()$ of the transportation cost:
+$$&amp;lt;\Gamma,M&amp;gt; = \sum_{i,j} \Gamma_{ij} M_{ij} = E_{X,Y \sim P(X,Y)} [M(X,Y)]$$
 This formulation also serves to define the problem in continuous spaces.&lt;/p&gt;
 &lt;h3&gt;Optimal Transport Problem&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;(Kantorovitch) Optimal transport  problem (OTP)&lt;/strong&gt; between &lt;span class="math"&gt;\(p\)&lt;/span&gt; and &lt;span class="math"&gt;\(q\)&lt;/span&gt; (for fixed &lt;span class="math"&gt;\(M\)&lt;/span&gt;): Find &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; minimizing &lt;span class="math"&gt;\(&amp;lt;\Gamma,M&amp;gt;\)&lt;/span&gt; subject to marginal constraints &lt;span class="math"&gt;\(\Gamma{} \in U(p,q)\)&lt;/span&gt;. The solution is denoted &lt;span class="math"&gt;\(\operatorname{OTP^_*}(p,q)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(Kantorovitch) Optimal transport  problem (OTP)&lt;/strong&gt; between $p$ and $q$ (for fixed $M$): Find $\Gamma$ minimizing $&amp;lt;\Gamma,M&amp;gt;$ subject to marginal constraints $\Gamma{} \in U(p,q)$. The solution is denoted $\operatorname{OTP^_*}(p,q)$.&lt;/p&gt;
 &lt;p&gt;This is a tight relaxation of the Monge problem. When the marginal are uniform distributions over sets of the same size, the solution to the OTP is a one-to-one mapping - no other solution is better (proof in [(PC, p15)]).&lt;/p&gt;
 &lt;p&gt;OTP is a linear problem (linear objective with linear constraints) that can be solved with the simplex algorithm or variants. The solution is a vertex of the polytope (cannot be an interior point).&lt;/p&gt;
 &lt;h3&gt;Distance induced by the OTP&lt;/h3&gt;
-&lt;p&gt;The solution to the OTP &lt;span class="math"&gt;\(d_M(p,q)^*\)&lt;/span&gt; is a distance between marginal distributions subject to &lt;span class="math"&gt;\(M\)&lt;/span&gt; being the positive exponent of a distance matrix.&lt;/p&gt;
-&lt;p&gt;More precisely, if &lt;span class="math"&gt;\(M=D^\alpha\)&lt;/span&gt;, where &lt;span class="math"&gt;\(D\)&lt;/span&gt; is a distance matrix, then &lt;span class="math"&gt;\(W_{D,\alpha}(p,q) = \operatorname{OTP^*}(p,q)^{1/\alpha}\)&lt;/span&gt; is a distance between &lt;span class="math"&gt;\(p\)&lt;/span&gt; and &lt;span class="math"&gt;\(q\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Symmetry is obvious, &lt;span class="math"&gt;\(Diag(p)\)&lt;/span&gt; transports &lt;span class="math"&gt;\(p\)&lt;/span&gt; to itself at cost 0 assuming &lt;span class="math"&gt;\(M_{i,i} =0\)&lt;/span&gt;, likewise if &lt;span class="math"&gt;\(M(u,v) &amp;gt;0\)&lt;/span&gt; for &lt;span class="math"&gt;\(u \neq v\)&lt;/span&gt;, then the transport cost is strictily positive when &lt;span class="math"&gt;\(p \neq q\)&lt;/span&gt;, transitivity must hold as we can move &lt;span class="math"&gt;\(p\)&lt;/span&gt; to &lt;span class="math"&gt;\(p'\)&lt;/span&gt; with &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt;, &lt;span class="math"&gt;\(p'\)&lt;/span&gt; to &lt;span class="math"&gt;\(p''\)&lt;/span&gt; with &lt;span class="math"&gt;\(\Gamma'\)&lt;/span&gt;, so the cheapest way to transport &lt;span class="math"&gt;\(p\)&lt;/span&gt; to &lt;span class="math"&gt;\(p"\)&lt;/span&gt; must be cheaper than this. The proof in the discrete case is in &lt;a href=""&gt;PC, p20&lt;/a&gt;; for the continuous case we need the glue (sic) lemma.&lt;/p&gt;
-&lt;p&gt;For &lt;span class="math"&gt;\(0&amp;lt;p&amp;lt;1\)&lt;/span&gt;, this is no longer true, but need to look at &lt;span class="math"&gt;\(W_{D,\alpha}(p,q)^{\alpha}\)&lt;/span&gt; to get a distance.&lt;/p&gt;
+&lt;p&gt;The solution to the OTP $d_M(p,q)^*$ is a distance between marginal distributions subject to $M$ being the positive exponent of a distance matrix.&lt;/p&gt;
+&lt;p&gt;More precisely, if $M=D^\alpha$, where $D$ is a distance matrix, then $W_{D,\alpha}(p,q) = \operatorname{OTP^*}(p,q)^{1/\alpha}$ is a distance between $p$ and $q$.&lt;/p&gt;
+&lt;p&gt;Symmetry is obvious, $Diag(p)$ transports $p$ to itself at cost 0 assuming $M_{i,i} =0$, likewise if $M(u,v) &amp;gt;0$ for $u \neq v$, then the transport cost is strictily positive when $p \neq q$, transitivity must hold as we can move $p$ to $p'$ with $\Gamma$, $p'$ to $p''$ with $\Gamma'$, so the cheapest way to transport $p$ to $p"$ must be cheaper than this. The proof in the discrete case is in &lt;a href=""&gt;PC, p20&lt;/a&gt;; for the continuous case we need the glue (sic) lemma.&lt;/p&gt;
+&lt;p&gt;For $0&amp;lt;p&amp;lt;1$, this is no longer true, but need to look at $W_{D,\alpha}(p,q)^{\alpha}$ to get a distance.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Duality&lt;/strong&gt;
-The dual problem is to find the maximum of &lt;span class="math"&gt;\(E_{\mu_X}(\phi) + E_{\mu_Y}(\psi)\)&lt;/span&gt; such that &lt;span class="math"&gt;\(\phi(x) + \psi(y) \lt M(x,y)\)&lt;/span&gt;. This is can be seen by writing the primal problem in matrix form (&lt;span class="math"&gt;\(min_x c^t x \text{ st. } Ax = b\)&lt;/span&gt;) from which we can identify &lt;span class="math"&gt;\(b\)&lt;/span&gt; to the concatenation of &lt;span class="math"&gt;\(p\)&lt;/span&gt; and &lt;span class="math"&gt;\(q\)&lt;/span&gt;, which yields the dual form &lt;span class="math"&gt;\(max_y b^Ty \text{ st. } A^Ty =\lt c\)&lt;/span&gt;. This shows that the objective has the form of a sum of two expectations over &lt;span class="math"&gt;\(p\)&lt;/span&gt; and &lt;span class="math"&gt;\(q\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;The proof in the discrete case is in [PC, p24] and relies on the theory of Lagrange multipliers (in the discrete case, &lt;span class="math"&gt;\(\phi\)&lt;/span&gt; and &lt;span class="math"&gt;\(\psi\)&lt;/span&gt; &lt;strong&gt;are&lt;/strong&gt; the Lagrange multipliers).&lt;/p&gt;
-&lt;p&gt;There is may be a telling analogy. Look at &lt;span class="math"&gt;\(\phi\)&lt;/span&gt; of a price over just moving &lt;span class="math"&gt;\(X\)&lt;/span&gt;, and &lt;span class="math"&gt;\(\psi\)&lt;/span&gt; of just moving &lt;span class="math"&gt;\(Y\)&lt;/span&gt;, such that the price of both is no greater than the transportation cost, then the sum of these two is reaches its max at a value that is also attained by an optimal transportation plan. This is discussed at length in [PC, p24-25].&lt;/p&gt;
+The dual problem is to find the maximum of $E_{\mu_X}(\phi) + E_{\mu_Y}(\psi)$ such that $\phi(x) + \psi(y) \lt M(x,y)$. This is can be seen by writing the primal problem in matrix form ($min_x c^t x \text{ st. } Ax = b$) from which we can identify $b$ to the concatenation of $p$ and $q$, which yields the dual form $max_y b^Ty \text{ st. } A^Ty =\lt c$. This shows that the objective has the form of a sum of two expectations over $p$ and $q$.&lt;/p&gt;
+&lt;p&gt;The proof in the discrete case is in [PC, p24] and relies on the theory of Lagrange multipliers (in the discrete case, $\phi$ and $\psi$ &lt;strong&gt;are&lt;/strong&gt; the Lagrange multipliers).&lt;/p&gt;
+&lt;p&gt;There is may be a telling analogy. Look at $\phi$ of a price over just moving $X$, and $\psi$ of just moving $Y$, such that the price of both is no greater than the transportation cost, then the sum of these two is reaches its max at a value that is also attained by an optimal transportation plan. This is discussed at length in [PC, p24-25].&lt;/p&gt;
 &lt;h2&gt;Wasserstein distances&lt;/h2&gt;
-&lt;p&gt;When &lt;span class="math"&gt;\(\mathcal{X}\)&lt;/span&gt; is a metric space and &lt;span class="math"&gt;\(M(x,y) = D^p(x,y)\)&lt;/span&gt; for some &lt;span class="math"&gt;\(p \ge 1\)&lt;/span&gt;, the induced distance (or rather its &lt;span class="math"&gt;\(p\)&lt;/span&gt;^th) root is the &lt;strong&gt;p-Wasserstein distance&lt;/strong&gt;. This is an instance of the more general Earth Mover Distances, which are defined over arbitrary distances.&lt;/p&gt;
-&lt;p&gt;When &lt;span class="math"&gt;\(p=1\)&lt;/span&gt; the [Kantorovitch-Rubinstein duality theorem] states that:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;When $\mathcal{X}$ is a metric space and $M(x,y) = D^p(x,y)$ for some $p \ge 1$, the induced distance (or rather its $p$^th) root is the &lt;strong&gt;p-Wasserstein distance&lt;/strong&gt;. This is an instance of the more general Earth Mover Distances, which are defined over arbitrary distances.&lt;/p&gt;
+&lt;p&gt;When $p=1$ the [Kantorovitch-Rubinstein duality theorem] states that:
+$$
 W(p,q) = \sup_{\phi\in F_L} E_{X \sim p} \phi(X) - E_{Y\sim q} \phi(Y)
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(F_L\)&lt;/span&gt; is the class of all 1-Lipschitz functions on &lt;span class="math"&gt;\(\mathcal{X}\)&lt;/span&gt;.[#klipschitz] In other words, distance between distributions are defined based on the maximal difference of expectations for all variation-bounded functions.&lt;/p&gt;
-&lt;p&gt;A &lt;a href="https://vincentherrmann.github.io/blog/wasserstein/"&gt;detailed proof&lt;/a&gt; shows that these results derives from an analysis of the dual form, where the constraints immediately yields that the optimal of the dual is such that &lt;span class="math"&gt;\(\forall i \phi(x_i) +\psi(x_i) \lt 0\)&lt;/span&gt;. In fact, in can even be shown that given the positivity of &lt;span class="math"&gt;\(p\)&lt;/span&gt; and &lt;span class="math"&gt;\(q\)&lt;/span&gt; the optimum is such that &lt;span class="math"&gt;\(\phi(x_i) +\psi(x_i) = 0\)&lt;/span&gt;, when we add the boundedness constraints.&lt;/p&gt;
+$$&lt;/p&gt;
+&lt;p&gt;where $F_L$ is the class of all 1-Lipschitz functions on $\mathcal{X}$.[#klipschitz] In other words, distance between distributions are defined based on the maximal difference of expectations for all variation-bounded functions.&lt;/p&gt;
+&lt;p&gt;A &lt;a href="https://vincentherrmann.github.io/blog/wasserstein/"&gt;detailed proof&lt;/a&gt; shows that these results derives from an analysis of the dual form, where the constraints immediately yields that the optimal of the dual is such that $\forall i \phi(x_i) +\psi(x_i) \lt 0$. In fact, in can even be shown that given the positivity of $p$ and $q$ the optimum is such that $\phi(x_i) +\psi(x_i) = 0$, when we add the boundedness constraints.&lt;/p&gt;
 &lt;p&gt;These definitions generalize to the continuous case, where Wasserstein distances are very important because they define &lt;strong&gt;&lt;em&gt;weak&lt;/em&gt;&lt;/strong&gt; distances between measures, which can be used to redefine fundamental notions such as &lt;strong&gt;convergence&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2&gt;Entropic relaxation and fast OTP computation&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Sinkhorn distances:&lt;/strong&gt; &lt;span class="math"&gt;\(\forall p,q, \forall \Gamma \in U(p,q), H(\Gamma) \lt H(p) + H(q) = H(pq^T)\)&lt;/span&gt;, so the inegality is tight.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(U_\alpha = \{P \in U(p,q) \text{ such that } \operatorname{KL}(P||rc^T) \lt \alpha \}\)&lt;/span&gt;, (&lt;span class="math"&gt;\(\alpha &amp;gt; 0\)&lt;/span&gt; otherwise this is meaningless),
-is the set of transport plans whose entropy is within &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; of the independent plan &lt;span class="math"&gt;\((p^Tq)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Sinkhorn distance: &lt;span class="math"&gt;\(d_{M,\alpha} = min_{ \Gamma \in U_\alpha} &amp;lt;\Gamma,M&amp;gt;\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;So this is the original transportation with additional entropic constraints on &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; to keep &lt;span class="math"&gt;\(\Gamma\)&lt;/span&gt; smooth (&lt;span class="math"&gt;\(p^Tq\)&lt;/span&gt;) has no nonzero value.&lt;/p&gt;
-&lt;p&gt;New problem (for &lt;span class="math"&gt;\(\lambda &amp;gt;0\)&lt;/span&gt;), which yields the dual Sinkhorn divergence:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;&lt;strong&gt;Sinkhorn distances:&lt;/strong&gt; $\forall p,q, \forall \Gamma \in U(p,q), H(\Gamma) \lt H(p) + H(q) = H(pq^T)$, so the inegality is tight.&lt;/p&gt;
+&lt;p&gt;$U_\alpha = {P \in U(p,q) \text{ such that } \operatorname{KL}(P||rc^T) \lt \alpha }$, ($\alpha &amp;gt; 0$ otherwise this is meaningless),
+is the set of transport plans whose entropy is within $\alpha$ of the independent plan $(p^Tq)$.&lt;/p&gt;
+&lt;p&gt;Sinkhorn distance: $d_{M,\alpha} = min_{ \Gamma \in U_\alpha} &amp;lt;\Gamma,M&amp;gt;$&lt;/p&gt;
+&lt;p&gt;So this is the original transportation with additional entropic constraints on $\Gamma$ to keep $\Gamma$ smooth ($p^Tq$) has no nonzero value.&lt;/p&gt;
+&lt;p&gt;New problem (for $\lambda &amp;gt;0$), which yields the dual Sinkhorn divergence:
+$$
 d_M^{\lambda}(p,q) = \min_{\Gamma \in U(p,q)} &amp;lt;\Gamma,M&amp;gt; - \frac{1}{\lambda} h(\Gamma)
-$$&lt;/div&gt;
-&lt;p&gt;
-For each value of &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;, &lt;span class="math"&gt;\(\exists \lambda d_M^\lambda(p,q) = d_M^\alpha(p,q)\)&lt;/span&gt; (duality theory). It can be found by varying &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt; monotonously -- the entropy of &lt;span class="math"&gt;\(h(\Gamma)\)&lt;/span&gt; is between &lt;span class="math"&gt;\(0\)&lt;/span&gt; and &lt;span class="math"&gt;\(\log(d)\)&lt;/span&gt;, so when &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt; goes to &lt;span class="math"&gt;\(0\)&lt;/span&gt;, the second term goes to infinity, and &lt;span class="math"&gt;\(h(\Gamma)\)&lt;/span&gt; increases. [I have a problem here]&lt;/p&gt;
-&lt;p&gt;Computing dual Sinkhorn divergences results from an old theorem that says that for each positive matrix &lt;span class="math"&gt;\(A\)&lt;/span&gt;, there is a unique pair of diagonal positive matrices such that &lt;span class="math"&gt;\(Diag(u) A Diag(v)\)&lt;/span&gt; is doubly stochastic and can be computed by the Sinkhorn fixed point algorithm:
-assuming we start with uniform &lt;span class="math"&gt;\(u\)&lt;/span&gt; and &lt;span class="math"&gt;\(v\)&lt;/span&gt;:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$(u,v) &amp;lt;- p ./ Kv, q./K'u,$$&lt;/div&gt;
-&lt;p&gt;
-with &lt;span class="math"&gt;\(K = exp(-\lambda M)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Assuming proper stopping criteria. Solve this for large values of &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt; gets you closer to the actual solution of the initial problem (because the entropy term becomes less and less important).&lt;/p&gt;
+$$
+For each value of $\alpha$, $\exists \lambda d_M^\lambda(p,q) = d_M^\alpha(p,q)$ (duality theory). It can be found by varying $\lambda$ monotonously -- the entropy of $h(\Gamma)$ is between $0$ and $\log(d)$, so when $\lambda$ goes to $0$, the second term goes to infinity, and $h(\Gamma)$ increases. [I have a problem here]&lt;/p&gt;
+&lt;p&gt;Computing dual Sinkhorn divergences results from an old theorem that says that for each positive matrix $A$, there is a unique pair of diagonal positive matrices such that $Diag(u) A Diag(v)$ is doubly stochastic and can be computed by the Sinkhorn fixed point algorithm:
+assuming we start with uniform $u$ and $v$:
+$$(u,v) &amp;lt;- p ./ Kv, q./K'u,$$
+with $K = exp(-\lambda M)$.&lt;/p&gt;
+&lt;p&gt;Assuming proper stopping criteria. Solve this for large values of $\lambda$ gets you closer to the actual solution of the initial problem (because the entropy term becomes less and less important).&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://michielstock.github.io/OptimalTransport/"&gt;Example implementation&lt;/a&gt;
     :::python
     def compute_optimal_transport(M, r, c, lam, epsilon=1e-8):
@@ -97,59 +88,54 @@ with &lt;span class="math"&gt;\(K = exp(-\lambda M)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;A computational analysis is in http://papers.nips.cc/paper/6792-near-linear-time-approximation-algorithms-for-optimal-transport-via-sinkhorn-iteration&lt;/p&gt;
 &lt;h2&gt;Wasserstein distance as a cost function - Wasserstein GANs&lt;/h2&gt;
 &lt;h3&gt;The model&lt;/h3&gt;
-&lt;p&gt;Let &lt;span class="math"&gt;\(p\)&lt;/span&gt; be the empirical distribution and &lt;span class="math"&gt;\(q\)&lt;/span&gt; the model distribution. For fixed &lt;span class="math"&gt;\(M\)&lt;/span&gt; (eg. the usual metric in a metric space), a natural objective would be to make &lt;span class="math"&gt;\(q\)&lt;/span&gt; as close as &lt;span class="math"&gt;\(p\)&lt;/span&gt; as possible, and to minimize the Wasserstein distance. This is what WGAN do for a class of generative models where we have observed data points distributed under &lt;span class="math"&gt;\(p\)&lt;/span&gt;, and generated data points that result from a 2-step procedure where we first sample &lt;span class="math"&gt;\(z \sim q\)&lt;/span&gt; (eg. a white noise), then generate deterministically &lt;span class="math"&gt;\(x\)&lt;/span&gt; through &lt;span class="math"&gt;\(x=g_\theta(z)\)&lt;/span&gt; (eg. a neural network for instance). We would like to find the optimal &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; minimizing the distance between distributions &lt;span class="math"&gt;\(p\)&lt;/span&gt; and &lt;span class="math"&gt;\(f_\theta(q)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Let $p$ be the empirical distribution and $q$ the model distribution. For fixed $M$ (eg. the usual metric in a metric space), a natural objective would be to make $q$ as close as $p$ as possible, and to minimize the Wasserstein distance. This is what WGAN do for a class of generative models where we have observed data points distributed under $p$, and generated data points that result from a 2-step procedure where we first sample $z \sim q$ (eg. a white noise), then generate deterministically $x$ through $x=g_\theta(z)$ (eg. a neural network for instance). We would like to find the optimal $\theta$ minimizing the distance between distributions $p$ and $f_\theta(q)$.&lt;/p&gt;
 &lt;p&gt;or equivalently:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
 W(p,q) = \sup_{f \in F_L} E_{X \sim p} f(X) - E_{x\sim q} f(Y)
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(F_L\)&lt;/span&gt; is the class of all 1-Lipschitz functions from &lt;span class="math"&gt;\((\mathcal{X},d)\)&lt;/span&gt; into &lt;span class="math"&gt;\(\R\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;As &lt;span class="math"&gt;\(x=g_\theta(z)\)&lt;/span&gt;, this program boils down to minimizing
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
+where $F_L$ is the class of all 1-Lipschitz functions from $(\mathcal{X},d)$ into $\R$.&lt;/p&gt;
+&lt;p&gt;As $x=g_\theta(z)$, this program boils down to minimizing
+$$
 W(p, p_\theta) = \sup_{\phi \in F_L} E_{X \sim p} \phi(X) - E_{Z\sim q} \phi(f_\theta(Z))
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(F_L\)&lt;/span&gt; is the class of all 1-Lipschitz functions on &lt;span class="math"&gt;\((\mathcal{X},d)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Assume we have a set of 1-Lipschitz (or &lt;span class="math"&gt;\(K\)&lt;/span&gt;-Lipschitz) functions parameterized by &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt;, we could approach &lt;span class="math"&gt;\(W(p,p_\theta\)&lt;/span&gt;) as
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
+where $F_L$ is the class of all 1-Lipschitz functions on $(\mathcal{X},d)$.&lt;/p&gt;
+&lt;p&gt;Assume we have a set of 1-Lipschitz (or $K$-Lipschitz) functions parameterized by $\lambda$, we could approach $W(p,p_\theta$) as
+$$
     max_{\lambda} E_{X \sim p} \phi_\lambda(X) - E_{Z\sim q} \phi_\lambda (g_\theta(Z))
-$$&lt;/div&gt;
+$$&lt;/p&gt;
 &lt;p&gt;Bar some technical conditions, Wasserstein GANs will:
-1. Find a appropriate &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt; to compute the Wasserstein distance
-2. Given this &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt;, minimize the distance in &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;. The important mathematical point here is that we can differentiate the Wasserstein distance wrt. &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; as &lt;span class="math"&gt;\(-E_{z \sim q} \nabla_\theta \phi_\lambda(g_{\theta}(z))\)&lt;/span&gt;
-3. make sure &lt;span class="math"&gt;\(f_\lambda\)&lt;/span&gt; remains Lipschitz, this is achieved in the original paper by clipping the weights in a fixed &lt;span class="math"&gt;\(d\)&lt;/span&gt;-dimensional box after each update.&lt;/p&gt;
+1. Find a appropriate $\lambda$ to compute the Wasserstein distance
+2. Given this $\lambda$, minimize the distance in $\theta$. The important mathematical point here is that we can differentiate the Wasserstein distance wrt. $\theta$ as $-E_{z \sim q} \nabla_\theta \phi_\lambda(g_{\theta}(z))$
+3. make sure $f_\lambda$ remains Lipschitz, this is achieved in the original paper by clipping the weights in a fixed $d$-dimensional box after each update.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;will roughly correspond to optimizing the GAN's critic / discriminator - find a &lt;span class="math"&gt;\(\phi_\lambda\)&lt;/span&gt; whose expectation under &lt;span class="math"&gt;\(p\)&lt;/span&gt; is different from the expectation under &lt;span class="math"&gt;\(p_{\theta}\)&lt;/span&gt;; 2. then updates &lt;span class="math"&gt;\(\theta\)&lt;/span&gt; to reduce this distance.&lt;/li&gt;
+&lt;li&gt;will roughly correspond to optimizing the GAN's critic / discriminator - find a $\phi_\lambda$ whose expectation under $p$ is different from the expectation under $p_{\theta}$; 2. then updates $\theta$ to reduce this distance.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Technical details are in the original publication by &lt;a href="https://arxiv.org/abs/1704.00028"&gt;(Arjosky et al, 2017)&lt;/a&gt;, easier reads are &lt;a href="https://mindcodec.ai/2018/09/23/an-intuitive-guide-to-optimal-transport-part-ii-the-wasserstein-gan-made-easy/"&gt;this post&lt;/a&gt; or &lt;a href="https://www.alexirpan.com/2017/02/22/wasserstein-gan.html"&gt;this one&lt;/a&gt;. The weight clipping part seems to be an issue, and alternatives exist for instance https://arxiv.org/abs/1704.00028.&lt;/p&gt;
 &lt;h3&gt;Implementing WGANs&lt;/h3&gt;
 &lt;p&gt;The basic implementation would do the following:
-   initialize &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;, &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt;
+   initialize $\theta$, $\lambda$
    for i in range(I):
        while(! not convergence):
-           sample &lt;span class="math"&gt;\(x_1 \dots x_n\)&lt;/span&gt; (data points), sample &lt;span class="math"&gt;\(z_1 \dots z_m\)&lt;/span&gt; (generated samples)
-       compute &lt;span class="math"&gt;\(F = \frac{1}{n} \phi_{\lambda} (x_i) - \frac{1}{m} \phi_{\lambda} (g_\theta(z_i))\)&lt;/span&gt;
-           compute &lt;span class="math"&gt;\(\nabla_\lambda F\)&lt;/span&gt;
-           update &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt;
-           &lt;span class="math"&gt;\(\operatorname{clip}(\lambda)\)&lt;/span&gt;
-       compute &lt;span class="math"&gt;\(\nabla_\theta\)&lt;/span&gt;(g) = - \frac{1}{m} \sum \nabla_\theta (\phi_\lambda(g_{\theta}(z_i)))&lt;span class="math"&gt;\(
-       update $\theta\)&lt;/span&gt;
+           sample $x_1 \dots x_n$ (data points), sample $z_1 \dots z_m$ (generated samples)
+       compute $F = \frac{1}{n} \phi_{\lambda} (x_i) - \frac{1}{m} \phi_{\lambda} (g_\theta(z_i))$
+           compute $\nabla_\lambda F$
+           update $\lambda$
+           $\operatorname{clip}(\lambda)$
+       compute $\nabla_\theta$(g) = - \frac{1}{m} \sum \nabla_\theta (\phi_\lambda(g_{\theta}(z_i)))$
+       update $\theta$
    done&lt;/p&gt;
 &lt;p&gt;Rq. In the sampling step, does it matter to sample the same number of points ? In the second estimation, can we reuse the same data points ? Does it matter ? We can have more of one than of the other, that would yield better estimates of the expectation.&lt;/p&gt;
 &lt;h3&gt;Application to multilingual embeddings&lt;/h3&gt;
-&lt;p&gt;The Wassertstein-GAN model is used to trained multilingual embeddings in a supervised fashion in &lt;a href="https://zmlarry.github.io/publications/emnlp2017.pdf"&gt;(Meng Zhang et al, Proc EMNLP 2017)&lt;/a&gt;. In this application, the setting is a bit different from the typical WGAN as the starting point is a pair of sets of monolingual embeddings &lt;span class="math"&gt;\(X_S\)&lt;/span&gt; and &lt;span class="math"&gt;\(X_T\)&lt;/span&gt; in respectively the source and target languages. We still assume that we would like to find a transform from one into the other such that the Wasserstein distance between &lt;span class="math"&gt;\(X_S\)&lt;/span&gt; and &lt;span class="math"&gt;\(g_\theta(X_T)\)&lt;/span&gt;. The authors seem to closely follow the approach of &lt;a href=""&gt;(Arjosky et al, 2017)&lt;/a&gt;, and do not need to pair source and target words in the first step (computation of the Wasserstein distance). The second part only uses one language and also no pairing.&lt;/p&gt;
+&lt;p&gt;The Wassertstein-GAN model is used to trained multilingual embeddings in a supervised fashion in &lt;a href="https://zmlarry.github.io/publications/emnlp2017.pdf"&gt;(Meng Zhang et al, Proc EMNLP 2017)&lt;/a&gt;. In this application, the setting is a bit different from the typical WGAN as the starting point is a pair of sets of monolingual embeddings $X_S$ and $X_T$ in respectively the source and target languages. We still assume that we would like to find a transform from one into the other such that the Wasserstein distance between $X_S$ and $g_\theta(X_T)$. The authors seem to closely follow the approach of &lt;a href=""&gt;(Arjosky et al, 2017)&lt;/a&gt;, and do not need to pair source and target words in the first step (computation of the Wasserstein distance). The second part only uses one language and also no pairing.&lt;/p&gt;
 &lt;h3&gt;Follow-up Questions:&lt;/h3&gt;
 &lt;p&gt;1) the basic procedure is asymmetric, and does not require supervision. Which is very nice, but probably not sufficiently put forward.
 Alternative approaches assume supervision - can we use it ? This would mean more constraints on the transportation map.&lt;/p&gt;
 &lt;p&gt;The authors mention heuristic sparsification of the transportation matrix. I am assuming that changing the regularizer from entropic to L^2 would do exactly this. We would have a extra learnable parameter to control the sparsity level.&lt;/p&gt;
-&lt;p&gt;The problem of finding the cost matrix given &lt;span class="math"&gt;\(c\)&lt;/span&gt; is also interesting. This is an inverse problem studied for instance in [https://jmlr.csail.mit.edu/papers/volume20/18-700/18-700.pdf], and it may be somehow more interesting than the initial problem, provided we express the distance function as &lt;/p&gt;
+&lt;p&gt;The problem of finding the cost matrix given $c$ is also interesting. This is an inverse problem studied for instance in [https://jmlr.csail.mit.edu/papers/volume20/18-700/18-700.pdf], and it may be somehow more interesting than the initial problem, provided we express the distance function as &lt;/p&gt;
 &lt;p&gt;2) the system does not really use masses, whereas we could fairly easily weight words with their frequencies or log-frequencies, and use this in sampling. How should we do this ? use unigram distributions when sampling ? That seems to be the minimum. Would the effect move frequent word -&amp;gt; frequent word ?&lt;/p&gt;
 &lt;p&gt;3) Could we do it with a word model ? That is without computing embeddings for a fixed set ? The answer is yes and if we have a way to generate character strings, we could do it much more easily. Think about it.&lt;/p&gt;
 &lt;p&gt;4) How good would this be for word alignments ?&lt;/p&gt;
-&lt;p&gt;5) How to recover the transportation Map ? Given &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;, we have two sets of points, and a function &lt;span class="math"&gt;\(G\)&lt;/span&gt; that maps one set to the other. One would then need to solve the primal problem (or a relaxed version) to get the transportation map. &lt;/p&gt;
+&lt;p&gt;5) How to recover the transportation Map ? Given $\theta$, we have two sets of points, and a function $G$ that maps one set to the other. One would then need to solve the primal problem (or a relaxed version) to get the transportation map. &lt;/p&gt;
 &lt;p&gt;6) applications - MT Evaluation with METEOR like stuff&lt;/p&gt;
 &lt;p&gt;Additional readings on the same issue (precursor):
 - Meng Zhang, Yang Liu, Huanbo Luan, Yiqun Liu, and Maosong Sun. Inducing Bilingual Lexica From Non-Parallel Data With Earth Mover's Distance Regularization. In Proceedings of COLING, 2016. [paper] --&amp;gt; https://zmlarry.github.io/publications/coling2016.pdf
@@ -159,16 +145,14 @@ And follower:
 - Joulin Grave Berthet http://proceedings.mlr.press/v89/grave19a.html&lt;/p&gt;
 &lt;p&gt;Side note on the Procrutes part
 La partie Procrustes est plus claire, même si il manque encore des détails à bien comprendre. Ce que le Procrustes normal supervise est une matrice binaire remplacée dans l'équation par une matrice de transport. Du point de vue mathématique, on cherche G une rotatation telle que
-&lt;/p&gt;
-&lt;div class="math"&gt;\begin{align}
-  G &amp;amp; = \argmin_G \sum_{u\in V_S, v \in V_T} T_{u,v} \| u G - v \l^2 \\
-    &amp;amp;  = \argmin_G \sum_{u\in V_S, v \in V_T} T_{u,v}    u GG^Tu  + v^Tv - 2 uGv^T \\
-    &amp;amp; = \argmax_G \sum_{u\in V_S, v \in V_T} T_{u,v}    uGv^T \\
-    &amp;amp; = \argmax_G \operatorname{Trace}( T UGV^T) \\
-      &amp;amp; = \argmax_G \operatorname{Trace}(V^T T UG) \\
-\end{align}&lt;/div&gt;
-&lt;p&gt;
-On utilise la SVD de &lt;span class="math"&gt;\(V^T T U = A \Sigma B^T\)&lt;/span&gt; et les propriétés de la trace pour conclure que le minimum est aussi celui de &lt;span class="math"&gt;\(\operatorname{Trace}(A \Sigma B^TG) =\operatorname{Trace}(\Sigma B^TGA)\)&lt;/span&gt; qui est atteint quand &lt;span class="math"&gt;\(B^TGA\)&lt;/span&gt; est l'identité, soit &lt;span class="math"&gt;\(G=BA^T\)&lt;/span&gt;. On retrouve le problème de Procrustes habituel quand &lt;span class="math"&gt;\(T_{u,v}\)&lt;/span&gt; est la matrice diagonale qui supervise les appariemments mot à mot.&lt;/p&gt;
+\begin{align}
+  G &amp;amp; = \argmin_G \sum_{u\in V_S, v \in V_T} T_{u,v} | u G - v \l^2 \
+    &amp;amp;  = \argmin_G \sum_{u\in V_S, v \in V_T} T_{u,v}    u GG^Tu  + v^Tv - 2 uGv^T \
+    &amp;amp; = \argmax_G \sum_{u\in V_S, v \in V_T} T_{u,v}    uGv^T \
+    &amp;amp; = \argmax_G \operatorname{Trace}( T UGV^T) \
+      &amp;amp; = \argmax_G \operatorname{Trace}(V^T T UG) \
+\end{align}
+On utilise la SVD de $V^T T U = A \Sigma B^T$ et les propriétés de la trace pour conclure que le minimum est aussi celui de $\operatorname{Trace}(A \Sigma B^TG) =\operatorname{Trace}(\Sigma B^TGA)$ qui est atteint quand $B^TGA$ est l'identité, soit $G=BA^T$. On retrouve le problème de Procrustes habituel quand $T_{u,v}$ est la matrice diagonale qui supervise les appariemments mot à mot.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;More thoughts on (3): if we have a word generating model eg
 w \sample unigram (char)
@@ -188,66 +172,4 @@ then I can try to do the same. This has less impact&lt;/p&gt;
 &lt;h3&gt;Mathematical fundations&lt;/h3&gt;
 &lt;p&gt;http://www.math.cmu.edu/~mthorpe/OTNotes&lt;/p&gt;
 &lt;h2&gt;Footnotes&lt;/h2&gt;
-&lt;p&gt;[#lipschitz] Note that when &lt;span class="math"&gt;\(\phi\)&lt;/span&gt; is K-Lifschitz, &lt;span class="math"&gt;\(\frac{phi}{K}\)&lt;/span&gt; is 1-Lifschitz, so we can actually generalize somehow the next results.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="Multilinguality, Embeddings"></category></entry></feed>
+&lt;p&gt;[#lipschitz] Note that when $\phi$ is K-Lifschitz, $\frac{phi}{K}$ is 1-Lifschitz, so we can actually generalize somehow the next results.&lt;/p&gt;</content><category term="Multilinguality, Embeddings"/></entry></feed>

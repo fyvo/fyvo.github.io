@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Multilingual NLP / Multilinguisme en Traitement des langues - NLP, Language Models, TAL, Modèles de Langue</title><link href="https://fyvo.github.io/" rel="alternate"></link><link href="https://fyvo.github.io/feeds/nlp-language-models-tal-modeles-de-langue.atom.xml" rel="self"></link><id>https://fyvo.github.io/</id><updated>2020-01-01T00:00:00+01:00</updated><subtitle>Un site académique / An academic site</subtitle><entry><title>Note sur le calcul de la perplexité</title><link href="https://fyvo.github.io/posts/2020/janv./01/note-sur-le-calcul-de-la-perplexite.html" rel="alternate"></link><published>2020-01-01T00:00:00+01:00</published><updated>2020-01-01T00:00:00+01:00</updated><author><name>François Yvon</name></author><id>tag:fyvo.github.io,2020-01-01:/posts/2020/janv./01/note-sur-le-calcul-de-la-perplexite.html</id><summary type="html">&lt;h1&gt;Une perplexité qui laisse perplexe&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Multilingual NLP / Multilinguisme en Traitement des langues - NLP, Language Models, TAL, Modèles de Langue</title><link href="https://fyvo.github.io/" rel="alternate"/><link href="https://fyvo.github.io/feeds/nlp-language-models-tal-modeles-de-langue.atom.xml" rel="self"/><id>https://fyvo.github.io/</id><updated>2020-01-01T00:00:00+01:00</updated><subtitle>Un site académique / An academic site</subtitle><entry><title>Note sur le calcul de la perplexité</title><link href="https://fyvo.github.io/posts/2020/janv./01/note-sur-le-calcul-de-la-perplexite.html" rel="alternate"/><published>2020-01-01T00:00:00+01:00</published><updated>2020-01-01T00:00:00+01:00</updated><author><name>François Yvon</name></author><id>tag:fyvo.github.io,2020-01-01:/posts/2020/janv./01/note-sur-le-calcul-de-la-perplexite.html</id><summary type="html">&lt;h1&gt;Une perplexité qui laisse perplexe&lt;/h1&gt;
 &lt;p&gt;Les modèles de langue continuent de faire l'objet de nombreuses recherches, en particulier parce que les données d'apprentissage sont abondantes, et permettent de pré-entrainer des représentations ou des réseaux qu'il est possible ensuite de détourner à d'autres fin, presque sans supervision. Le &lt;a href="https://s3-us-west-2. amazonaws. com/openai-assets/research-covers/languageunsupervised/language understanding paper.pdf"&gt;travail récent de …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Une perplexité qui laisse perplexe&lt;/h1&gt;
 &lt;p&gt;Les modèles de langue continuent de faire l'objet de nombreuses recherches, en particulier parce que les données d'apprentissage sont abondantes, et permettent de pré-entrainer des représentations ou des réseaux qu'il est possible ensuite de détourner à d'autres fin, presque sans supervision. Le &lt;a href="https://s3-us-west-2. amazonaws. com/openai-assets/research-covers/languageunsupervised/language understanding paper.pdf"&gt;travail récent de Radford et collègues&lt;/a&gt; en donne une très belle illustration, puisque leur modèle de langue est utilisé (une fois adapté à ces tâches) aussi bien pour la classification de documents que pour le calcul d'équivalences sémantiques. Ce travail est encore étendu dans une nouvelle publication, qui exploite une architecture bien plus profonde, et un bien plus grand nombre de données d'apprentissage. Dans ce dernier travail, les auteurs présentent des performances de leur modèle en termes de perplexité, présentant des résultats qui surpassent de loin l'état de l'art. Ainsi ils obtiennent sur le PennTreeBank [] (table 3) un score de 35.76, alors que le très sérieux travail de Melis et co-auteurs [ ], en 2017, compare une dizaine de modèles de l'état de l'art, avec des scores (Table 1) s'échelonnant entre 86.2 et 58.3, des résultats qui sont encore améliorés par Yang et co-auteurs en 2018 [] pour atteindre 47.7 (Il est possible de faire encore un peu mieux - avec une technique qui utilise des réseaux adversariaux pour améliorer les représentations de mots rares []). &lt;/p&gt;
-&lt;p&gt;Note: le travail de [[]] se concentre sur le Giga word et ne produit pas de résultat sur le PTB. En revanche, il utilise des modèles de caractères sur la couche de sortie qui semblent capables de scorer n'importe quelle suite de caractère, c-à-d qu'au lieu de calculer directement &lt;span class="math"&gt;\(P(w=x_1\dots x_n|h)\)&lt;/span&gt; il utilise &lt;span class="math"&gt;\(P(x_1|h)p5x_2|x_1,h)\dots P(eow|x_1\dotsx_t,h)\)&lt;/span&gt;. Quel est l'effet sur le facteur de normalisation ? Ce serait à regarder de près.&lt;/p&gt;
+&lt;p&gt;Note: le travail de [[]] se concentre sur le Giga word et ne produit pas de résultat sur le PTB. En revanche, il utilise des modèles de caractères sur la couche de sortie qui semblent capables de scorer n'importe quelle suite de caractère, c-à-d qu'au lieu de calculer directement $P(w=x_1\dots x_n|h)$ il utilise $P(x_1|h)p5x_2|x_1,h)\dots P(eow|x_1\dotsx_t,h)$. Quel est l'effet sur le facteur de normalisation ? Ce serait à regarder de près.&lt;/p&gt;
 &lt;h1&gt;Qu'est ce que la perplexité ?&lt;/h1&gt;
-&lt;p&gt;La perplexité est une mesure de la capacité de prédiction du modèle de langue &lt;span class="math"&gt;\(M\)&lt;/span&gt;, proposée dès les travaux pionniers de Shannon sur les modèles de Markov [@Shannon51prediction]. Elle est le plus souvent définie en relation avec l'entropie croisée de la source &lt;span class="math"&gt;\(H(M) = E_{x_1 \dots X_T \sim S} \log P(x_1 \dots X_T) = \frac{1}{T} \log P_M(x_t | x_{&amp;lt;t})\)&lt;/span&gt; par &lt;span class="math"&gt;\(PP(M) = 2^H(M)\)&lt;/span&gt;, qui présuppose un modèle capable d'assigner une probabilité à toute séquence de mots, typiquement en la décomposant en utilisant la règle de factorisation de la loi jointe comme un produit de lois conditionnelles. Dans les modèles discrets (n-gramme) [], chaque facteur définit une distribution discrète sur un vocabulaire prédéfini, de taille connue &lt;span class="math"&gt;\(|V|\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;La perplexité est une mesure de la capacité de prédiction du modèle de langue $M$, proposée dès les travaux pionniers de Shannon sur les modèles de Markov [@Shannon51prediction]. Elle est le plus souvent définie en relation avec l'entropie croisée de la source $H(M) = E_{x_1 \dots X_T \sim S} \log P(x_1 \dots X_T) = \frac{1}{T} \log P_M(x_t | x_{&amp;lt;t})$ par $PP(M) = 2^H(M)$, qui présuppose un modèle capable d'assigner une probabilité à toute séquence de mots, typiquement en la décomposant en utilisant la règle de factorisation de la loi jointe comme un produit de lois conditionnelles. Dans les modèles discrets (n-gramme) [], chaque facteur définit une distribution discrète sur un vocabulaire prédéfini, de taille connue $|V|$.&lt;/p&gt;
 &lt;p&gt;Une autre manière de trouver ce résultat est d'imaginer un jeu dans lequel il on demande de deviner des mots absents d'un texte en formulant des hypothèses sous la forme d'une distribution de probabilité sur le vocabulaire de sortie. Si le pari correspond à la distribution de probabilité conditionnelle au contexte gauche, on retrouve la forme précédente lorsque l'on prédit successivement les mots de gauche à droite. L'intérêt du jeu de Shannon c'est qu'il autorise à utiliser d'autres modèles (par exemple: qui utilisent le contexte droit, ou bien simultanément le contexte droit et gauche).&lt;/p&gt;
 &lt;p&gt;Un des points d'attention dans ces calculs est la taille du vocabulaire. Il est d'une part important de pouvoir produire toutes les séquences possibles, ce qui peut être fait de deux manières:
 - en modélisant l'occurrence d'un mot hors vocabulaire, considéré comme un token supplémentaire ajouté au vocabulaire prédéfini. Si un mot nouveau est rencontré dans le corpus de test, on le remplace par ce token unique (OOV). NB. cela assigne souvent une probabililité trop forte aux mots hors vocabulaires, puisque si chacun est individuellement rare, ils sont collectivement fréquents
@@ -12,20 +12,16 @@
 - fait encore autre chose: puisqu'il ne fait pas les prédictions mot à mot, mais ignore même les découpages en mot.&lt;/p&gt;
 &lt;p&gt;Il est raisonnable de comparer deux modèles qui choissent l'option (1), à supposer qu'ils aient la même taille de vocabulaire; et sans doute aussi deux modèles qui choisissent l'option (2), mais par contre il n'est pas raisonable de comparer deux modèles qui ne probabilisent pas le même espace.&lt;/p&gt;
 &lt;h2&gt;Aux origines de la perplexité&lt;/h2&gt;
-&lt;p&gt;L'origine de la perplexité provient de résultats de la théorie de l'information. Un premier concept utile est celui du taux d'entropie d'une suite de VA &lt;span class="math"&gt;\(X_{1} \dots X_n\)&lt;/span&gt; définie par [@Cover91information,chap4]:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;L'origine de la perplexité provient de résultats de la théorie de l'information. Un premier concept utile est celui du taux d'entropie d'une suite de VA $X_{1} \dots X_n$ définie par [@Cover91information,chap4]:
+$$
 H(P) = - \frac{1}{n} \sum_{x_1 \dots x_n} P(x_1 \dots x_n) \log P(x_1 \dots x_n)
-$$&lt;/div&gt;
-&lt;p&gt;
-L'entropie est alors la limite pour &lt;span class="math"&gt;\(n\rightarrow{}\infty\)&lt;/span&gt; de &lt;span class="math"&gt;\( H(P) $. Sous certaines conditions (stationarité et ergodicité du processus $P\)&lt;/span&gt; qui génère les messages), on peut montrer que (a) cette limite existe ; (b), qu'elle est aussi égale à la limite de &lt;span class="math"&gt;\(\frac{1}{n} H(X_n|X_1 \dots X_{n-1})\)&lt;/span&gt; et que l'on peut calculer &lt;span class="math"&gt;\(H(P)\)&lt;/span&gt; en mesurant &lt;span class="math"&gt;\(\lim_{n \rightarrow \infty} \frac{1}{n} \log P(x_1 \x_n)\)&lt;/span&gt;. &lt;/p&gt;
-&lt;p&gt;L'idée de perplexité provient de la mesure de la divergence KL entre la distribution "naturelle" des textes anglais et la distribution approchée par un modèle &lt;span class="math"&gt;\(M\)&lt;/span&gt;. Comme précédemment, la généralisation à des messages des de la divergence conduit à définir:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-KL(P||P_M) = lim_{n \rightarrow \infty}  \sum_{x_1 \dots x_n} p(x_1 \dots x_n) \\frac{log P(x_1 \dots x_n)}{P_M(x_1 \dots x_n)}
-$$&lt;/div&gt;
-&lt;p&gt; 
-qui fait apparaitre deux termes: le premier est l'entropie, le second &lt;em&gt;l'entropie croisée&lt;/em&gt;. Comme pour la perplexité, ce terme est calculé comme &lt;span class="math"&gt;\(\lim_{n \rightarrow \infty} \frac{1}{n} \log P_M(x_1 \x_n)\)&lt;/span&gt; quand &lt;span class="math"&gt;\((x_1 \dots x_n)\)&lt;/span&gt; est une séquence tirée sous &lt;span class="math"&gt;\(P\)&lt;/span&gt;.&lt;/p&gt;
+$$
+L'entropie est alors la limite pour $n\rightarrow{}\infty$ de $ H(P) $. Sous certaines conditions (stationarité et ergodicité du processus $P$ qui génère les messages), on peut montrer que (a) cette limite existe ; (b), qu'elle est aussi égale à la limite de $\frac{1}{n} H(X_n|X_1 \dots X_{n-1})$ et que l'on peut calculer $H(P)$ en mesurant $\lim_{n \rightarrow \infty} \frac{1}{n} \log P(x_1 \x_n)$. &lt;/p&gt;
+&lt;p&gt;L'idée de perplexité provient de la mesure de la divergence KL entre la distribution "naturelle" des textes anglais et la distribution approchée par un modèle $M$. Comme précédemment, la généralisation à des messages des de la divergence conduit à définir:
+$$
+KL(P||P_M) = lim_{n \rightarrow \infty}  \sum_{x_1 \dots x_n} p(x_1 \dots x_n) \frac{log P(x_1 \dots x_n)}{P_M(x_1 \dots x_n)}
+$$ 
+qui fait apparaitre deux termes: le premier est l'entropie, le second &lt;em&gt;l'entropie croisée&lt;/em&gt;. Comme pour la perplexité, ce terme est calculé comme $\lim_{n \rightarrow \infty} \frac{1}{n} \log P_M(x_1 \x_n)$ quand $(x_1 \dots x_n)$ est une séquence tirée sous $P$.&lt;/p&gt;
 &lt;h1&gt;Une mise au point éclairante (en anglais)&lt;/h1&gt;
 &lt;p&gt;[http://sjmielke.com/comparing-perplexities.htm]
 (même si je ne suis pas complètement d'accord sur l'utilisation de LMs fermés, puisque dans la pratique on utilise un token unk).&lt;/p&gt;
@@ -107,66 +103,4 @@ with &lt;code&gt;lmplz&lt;/code&gt; when you train the model. This will train a 
 &lt;p&gt;The default normalizes with respect to whatever vocabulary exists, plus 1 for the unknown word.&lt;/p&gt;
 &lt;p&gt;Remember to do the same with whatever you compare to: if you train a neural network on a 200,000-word vocabulary, then its vocabulary is normalized with respect to 200,000 words including unknown. You should therefore take its unknown word probability times 1/(BIG_NUMBER-200,000) before computing perplexity. Effectively, the unknown probability is the probability of the class, not a specific unknown. So you need to hypothesize a uniform distribution. This is what &lt;code&gt;--vocab_pad&lt;/code&gt; does.&lt;/p&gt;
 &lt;p&gt;Remember, the model with no training data has OOV probability 1 and therefore perplexity 0. Comparing perplexities with different vocabulary sizes is meaningless.&lt;/p&gt;
-&lt;p&gt;You should really use including OOV, which is counts every word including unknown words. Excluding OOV skips unknown words for purposes of computing probability and normalizing. It's there because SRI does that.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="NLP, Language Models, TAL, Modèles de Langue"></category></entry></feed>
+&lt;p&gt;You should really use including OOV, which is counts every word including unknown words. Excluding OOV skips unknown words for purposes of computing probability and normalizing. It's there because SRI does that.&lt;/p&gt;</content><category term="NLP, Language Models, TAL, Modèles de Langue"/></entry></feed>
